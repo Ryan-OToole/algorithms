@@ -141,3 +141,31 @@ function spinWords(string) {
     }
     return finalArr.join(' ');
   }
+
+
+
+  function isValidWalk(walk) {
+    if (walk.length === 10) {
+      let counterN = 0;
+      let counterS = 0;
+      let counterE = 0;
+      let counterW = 0;
+      walk.map(der=>{
+        if(der === 'n'){
+          counterN++;
+        } else if(der === 's'){
+          counterS++
+        }else if(der === 'e'){
+          counterE++
+        }else if(der === 'w'){
+          counterW++
+        }
+      })
+      if(counterN===counterS && counterE===counterW){
+        return true
+      }
+      else { return false }
+    }
+    
+      else { return false }
+    }
