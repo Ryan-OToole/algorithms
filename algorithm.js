@@ -205,7 +205,7 @@ function spiralMatrix(n) {
   return container;
 }
   
-
+//make a function that returns every possible permutation of a string
 function perms(str){
     let final = [];
   
@@ -235,31 +235,49 @@ function perms(str){
 
 
 
+//Your job is to write a function which increments a string, to create a new string.
+//If the string already ends with a number, the number should be incremented by 1.
+//If the string does not end with a number. the number 1 should be appended to the new string.
+// Examples:
+//foo -> foo1
+//foobar23 -> foobar24
+//foo0042 -> foo0043
+//foo9 -> foo10
+//foo099 -> foo100
 
-  function stringIncrementer(string) {
-    const array = string.split('');
-    const letterArr = array.filter(letter => !Number.isInteger(parseInt(letter)));
-    const numberArr = array.filter(number => Number.isInteger(parseInt(number)));
-    let counter = 0;
-    let zeroNumberArr = [];
-   for (let i=0; i < numberArr.length; i++) {
-       if (numberArr[i] === '0') {
-         zeroNumberArr.push(numberArr[i])
-       }
-       else {
-         break;
-       }
-     }
-     let number = parseInt(numberArr.join(''));
-     number++
-     console.log(number)
-     if(!number) {
-       return `${letterArr.join('')}1`
-     }
-     else if (zeroNumberArr.length > 0) {
-     return `${letterArr.join('')}${zeroNumberArr.join('')}${number}`
-     }
-     else {
-         return `${letterArr.join('')}${number}`
-     }
-   
+    function incrementString(string) {
+        const array = string.split('');
+        const letterArr = array.filter(letter => !Number.isInteger(parseInt(letter)));
+        const numberArr = array.filter(number => Number.isInteger(parseInt(number)));
+        let zeroNumberArr = [];
+      for (let i=0; i < numberArr.length; i++) {
+          if (numberArr[i] === '0') {
+            zeroNumberArr.push(numberArr[i])
+          }
+          else {
+            break;
+          }
+        }
+        let number = parseInt(numberArr.join(''));
+          if (number === 0) {
+            zeroNumberArr.shift();
+            return `${letterArr.join('')}${zeroNumberArr.join('')}1`
+        }
+          if(!number) {
+            return `${letterArr.join('')}1`
+        }
+        number++
+        const numberArrNoZeros = numberArr.filter(num => num !== '0')
+        let tempNumber = parseInt(numberArrNoZeros.join(''))
+        tempNumber++;
+      if (tempNumber.toString().length !== numberArrNoZeros.length) {
+          zeroNumberArr.shift();
+         return `${letterArr.join('')}${zeroNumberArr.join('')}${tempNumber}`
+        }
+        else if (zeroNumberArr.length > 0) {
+        return `${letterArr.join('')}${zeroNumberArr.join('')}${number}`
+        }
+        else {
+            return `${letterArr.join('')}${number}`
+        }
+      }
