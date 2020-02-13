@@ -169,3 +169,97 @@ function spinWords(string) {
     
       else { return false }
     }
+function spiralMatrix(n) {
+  let startcolumn = n - 1;
+  let startrow = 0;
+  let endcolumn = 0;
+  let endrow = n - 1;
+  let counter = 1;
+  let container = [];
+  
+  while (container.length <= n - 1) {
+    container.push([]);
+  };
+
+  while (counter <= n ** 2) {
+    for (let i = endcolumn; i <= startcolumn; i++) {
+      container[startrow][i] = counter;
+      counter++;
+    } startrow++;
+
+    for (let i = startrow; i <= endrow; i++) {
+      container[i][startcolumn] = counter;
+      counter++;
+    } startcolumn--;
+
+    for (let i = startcolumn; i >= endcolumn; i--) {
+      container[endrow][i] = counter
+      counter++
+    } endrow--
+
+    for (let i = endrow; i >= startrow; i--) {
+      container[i][endcolumn] = counter
+      counter++
+    } endcolumn++
+  }
+  return container;
+}
+  
+
+function perms(str){
+    let final = [];
+  
+    if(str.length < 2){
+      // console.log('str', str);
+      final.push(str);
+      return final
+    }
+  
+    for(let i = 0; i < str.length; i++){
+      let firstChar = str[i];
+      // console.log('firstChar, i:', firstChar, i);
+      //  console.log('input to remainingChar:',str.substring(0, i) + str.substring(i+1));
+      let remainingChar = perms(str.substring(0, i) + str.substring(i+1));
+      // console.log('output to remainingChar', remainingChar);
+      for(let j=0; j<remainingChar.length; j++){
+        // console.log('pushed into final, j', firstChar + remainingChar[j], j);
+        final.push(firstChar + remainingChar[j]);
+      }
+    }
+    // console.log('final', final);
+    return final;
+  }
+  
+  // console.log('thic', perms('abcd'));
+  perms('abcd')
+
+
+
+
+  function stringIncrementer(string) {
+    const array = string.split('');
+    const letterArr = array.filter(letter => !Number.isInteger(parseInt(letter)));
+    const numberArr = array.filter(number => Number.isInteger(parseInt(number)));
+    let counter = 0;
+    let zeroNumberArr = [];
+   for (let i=0; i < numberArr.length; i++) {
+       if (numberArr[i] === '0') {
+         zeroNumberArr.push(numberArr[i])
+       }
+       else {
+         break;
+       }
+     }
+     let number = parseInt(numberArr.join(''));
+     number++
+     console.log(number)
+     if(!number) {
+       return `${letterArr.join('')}1`
+     }
+     else if (zeroNumberArr.length > 0) {
+     return `${letterArr.join('')}${zeroNumberArr.join('')}${number}`
+     }
+     else {
+         return `${letterArr.join('')}${number}`
+     }
+   
