@@ -281,3 +281,63 @@ function perms(str){
             return `${letterArr.join('')}${number}`
         }
       }
+
+
+      // crazy string challenge with ( { [ ]})
+
+      const string = '{([])}';
+      // const string = '[({})](]';
+      
+      function loopString(string) {
+        let counterB = 0; 
+        let counterP = 0; 
+        let counterC = 0; 
+        let obj = {B: counterB, P: counterP, C: counterC};
+        for (let thing of string) {
+          if (obj['B'] === 1) {
+      
+          }
+          if (obj['P'] === 1) {
+      
+          }
+          if (obj['C'] === 1) {
+            first = 
+          }
+            if (thing === ')') {
+              counterP--;
+              obj['P'] = counterP
+              if (counterP === -1) {
+                return false
+              } 
+            }
+            if (thing === ']') {
+              counterB--;
+              obj['B'] = counterB
+              if (counterB === -1) {
+                return false
+              }
+            }
+            if (thing === '}') {
+              counterC--;
+              obj['C'] = counterC
+              if (counterC === -1) {
+                return false
+              }
+            }
+            if (thing === '(') {
+              counterP++;
+              obj['P'] = counterP
+            }
+            if (thing === '[') {
+              counterB++;
+             obj['B'] = counterB
+            }
+            if (thing === '{') {
+              counterC++;
+              obj['C'] = counterC
+            }
+        }
+        return true;
+      }
+      
+      loopString(string)
